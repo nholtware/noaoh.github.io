@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": "npm run build",
+  "buildCommand": "vercel build",
   "devCommand": "npm run dev",
   "installCommand": "npm install"
 }
