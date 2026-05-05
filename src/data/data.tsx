@@ -233,7 +233,7 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a Northwest Arkansas based <strong className="text-stone-100">Backend Software Engineer</strong>, currently
+        I'm a Central Arkansas based <strong className="text-stone-100">Backend Software Engineer</strong>, currently
         working at <strong className="text-stone-100">DexCare</strong> helping to build the future of Healthcare by
         making it easier to get the right appointment, with the right professional, at the right time!
       </p>
@@ -264,7 +264,7 @@ export const aboutData: About = {
   profileImageSrc: profilepic,
   description: `More about me!`,
   aboutItems: [
-    {label: 'Location', text: 'Bentonville, AR', Icon: MapIcon},
+    {label: 'Location', text: 'North Little Rock, AR', Icon: MapIcon},
     {label: 'Age', text: '25', Icon: CalendarIcon},
     {label: 'Nationality', text: 'American', Icon: FlagIcon},
     {label: 'Interests', text: 'Video Games, Music, Linux, Programming', Icon: SparklesIcon},
@@ -303,6 +303,9 @@ export const skills: SkillGroup[] = [
       {
         name: 'React',
       },
+      {
+        name: 'React Router'
+      }
     ],
   },
   {
@@ -508,13 +511,13 @@ export const contact: ContactSection = {
     },
     {
       type: ContactType.Location,
-      text: 'Bentonville, AR',
+      text: 'North Little Rock, AR',
       href: 'https://www.openstreetmap.org/#map=12/36.3549/-94.2404',
     },
     {
       type: ContactType.Github,
-      text: 'noaoh',
-      href: 'https://github.com/noaoh',
+      text: 'nholtware',
+      href: 'https://github.com/nholtware',
     },
   ],
 };
@@ -523,7 +526,7 @@ export const contact: ContactSection = {
  * Social items
  */
 export const socialLinks: Social[] = [
-  {label: 'Github', Icon: GithubIcon, href: 'https://github.com/noaoh'},
+  {label: 'Github', Icon: GithubIcon, href: 'https://github.com/nholtware'},
   {label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/5104135/noaoh'},
-  {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/noah-holt-sde'},
+  {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/noahrholt/'},
 ];
