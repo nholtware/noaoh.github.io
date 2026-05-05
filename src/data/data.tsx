@@ -265,7 +265,7 @@ export const aboutData: About = {
   description: `More about me!`,
   aboutItems: [
     {label: 'Location', text: 'North Little Rock, AR', Icon: MapIcon},
-    {label: 'Age', text: '25', Icon: CalendarIcon},
+    {label: 'Age', text: '28', Icon: CalendarIcon},
     {label: 'Nationality', text: 'American', Icon: FlagIcon},
     {label: 'Interests', text: 'Video Games, Music, Linux, Programming', Icon: SparklesIcon},
     {label: 'Studied At', text: 'University of Arkansas', Icon: AcademicCapIcon},
@@ -421,6 +421,7 @@ export const education: TimelineItemProps[] = [
     date: 'August 2016 - May 2020',
     location: 'University of Arkansas',
     title: "Bachelor's of Science in Computer Science",
+    gpa: '3.7',
     content: (
       <p>
         I developed programs in C++, C, Python, and Node.JS, while not busy with that I was active in my local ACM
@@ -512,7 +513,7 @@ export const contact: ContactSection = {
     {
       type: ContactType.Location,
       text: 'North Little Rock, AR',
-      href: 'https://www.openstreetmap.org/#map=12/36.3549/-94.2404',
+      href: 'https://www.openstreetmap.org/relation/111138',
     },
     {
       type: ContactType.Github,

@@ -89,6 +89,7 @@ export interface TimelineItemProps {
   date: string;
   location: string;
   title: string;
+  gpa?: string;
   content: JSX.Element;
 }
 
