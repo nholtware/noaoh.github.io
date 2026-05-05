@@ -3,15 +3,15 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "yarn compile && yarn next build",
+    "build": "npm run compile && npx next build",
     "clean": "rm -rf build-tsc .next",
-    "compile": "yarn run -T tsc --build --verbose",
-    "dev": "yarn compile && yarn next dev",
-    "lint": "yarn run -T prettier --write './src/**/*.{js,jsx,json,ts,tsx}' && eslint './src/**/*.{js,jsx,ts,tsx}' --fix --max-warnings=0",
-    "export": "yarn next export && touch out/.nojekyll",
-    "deploy": "yarn build && yarn export && git add out && git commit -m 'deploy' && git subtree push --prefix out origin gh-pages",
-    "start": "yarn next start",
-    "sitemap": "yarn next-sitemap"
+    "compile": "npx tsc --build --verbose",
+    "dev": "npm run compile && npx next dev",
+    "lint": "npx prettier --write './src/**/*.{js,jsx,json,ts,tsx}' && eslint './src/**/*.{js,jsx,ts,tsx}' --fix --max-warnings=0",
+    "export": "npx next export && touch out/.nojekyll",
+    "deploy": "npm run build && npm run export && git add out && git commit -m 'deploy' && git subtree push --prefix out origin gh-pages",
+    "start": "npx next start",
+    "sitemap": "npx next-sitemap"
   },
   "engines": {
     "node": "24.x"
@@ -74,8 +74,5 @@
     "stylelint-prettier": "^2.0.0",
     "tailwindcss": "^3.0.23",
     "typescript": "^5.0.4"
-  },
-  "resolutions": {
-    "autoprefixer": "10.4.5"
   }
 }
