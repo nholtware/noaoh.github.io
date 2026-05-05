@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,css,scss}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx,css,scss}'],
   // darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
