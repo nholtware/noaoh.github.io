@@ -32,3 +32,4 @@ npm-error.log*
 
 # vercel
 .vercel
+.env*
