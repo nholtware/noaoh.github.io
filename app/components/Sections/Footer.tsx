@@ -1,6 +1,7 @@
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import {FC, memo} from 'react';
 
@@ -9,7 +10,8 @@ import Socials from '../Socials';
 
 const Footer: FC = memo(() => (
   <Box sx={{position: 'relative', bgcolor: 'grey.900', px: {xs: 2, sm: 4}, pt: {xs: 6, sm: 7}, pb: {xs: 3, sm: 4}}}>
-    <Box sx={{position: 'absolute', insetInline: 0, top: {xs: -16, sm: -24}, display: 'flex', justifyContent: 'center'}}>
+    <Box
+      sx={{position: 'absolute', insetInline: 0, top: {xs: -16, sm: -24}, display: 'flex', justifyContent: 'center'}}>
       <Fab
         aria-label="Back to top"
         href={`/#${HomepageSections.Hero.urlName}`}
@@ -24,6 +26,32 @@ const Footer: FC = memo(() => (
       </Box>
       <Typography sx={{color: 'grey.700'}} variant="body2">
         © Copyright 2022 Noah Holt
+      </Typography>
+      <Typography sx={{color: 'grey.700'}} variant="caption">
+        Header photo:{' '}
+        <Link
+          color="inherit"
+          href="https://commons.wikimedia.org/wiki/File:Sunrise_at_Pinnacle_Mountain.jpg"
+          rel="noopener noreferrer"
+          target="_blank">
+          Sunrise at Pinnacle Mountain
+        </Link>{' '}
+        by{' '}
+        <Link
+          color="inherit"
+          href="https://commons.wikimedia.org/wiki/User:Nngowen"
+          rel="noopener noreferrer"
+          target="_blank">
+          Nngowen
+        </Link>
+        , licensed under{' '}
+        <Link
+          color="inherit"
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          rel="noopener noreferrer"
+          target="_blank">
+          CC BY-SA 4.0
+        </Link>
       </Typography>
     </Box>
   </Box>
