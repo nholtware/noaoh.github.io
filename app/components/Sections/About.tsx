@@ -1,4 +1,5 @@
-import classNames from 'classnames';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import {FC, memo} from 'react';
 
 import {aboutData, HomepageSections} from '../../data/data';
@@ -7,31 +8,47 @@ import Section from '../Layout/Section';
 const About: FC = memo(() => {
   const {profileImageSrc, description, aboutItems} = aboutData;
   return (
-    <Section className="bg-neutral-800" section={HomepageSections.About}>
-      <div className={classNames('grid grid-cols-1 gap-y-4', {'md:grid-cols-4': !!profileImageSrc})}>
+    <Section section={HomepageSections.About} sx={{bgcolor: 'grey.900'}}>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: 2,
+          gridTemplateColumns: {xs: '1fr', md: profileImageSrc ? 'repeat(4, 1fr)' : '1fr'},
+        }}>
         {!!profileImageSrc && (
-          <div className="col-span-1 flex justify-center md:justify-start">
-            <div className="relative h-24 w-24 overflow-hidden rounded-xl md:h-32 md:w-32">
-              <img alt="about-me-image" className="absolute inset-0 h-full w-full object-cover" src={profileImageSrc} />
-            </div>
-          </div>
+          <Box sx={{display: 'flex', justifyContent: {xs: 'center', md: 'flex-start'}}}>
+            <Box sx={{position: 'relative', overflow: 'hidden', borderRadius: 3, width: {xs: 96, md: 128}, height: {xs: 96, md: 128}}}>
+              <Box
+                alt="about-me-image"
+                component="img"
+                src={profileImageSrc}
+                sx={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+              />
+            </Box>
+          </Box>
         )}
-        <div className={classNames('col-span-1 flex flex-col gap-y-6', {'md:col-span-3': !!profileImageSrc})}>
-          <div className="flex flex-col gap-y-2">
-            <h2 className="text-2xl font-bold text-white">About me</h2>
-            <p className="prose prose-sm text-gray-300 sm:prose-base">{description}</p>
-          </div>
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: 3, gridColumn: {md: profileImageSrc ? 'span 3' : 'span 1'}}}>
+          <Box sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
+            <Typography component="h2" sx={{fontWeight: 'bold'}} variant="h4">
+              About me
+            </Typography>
+            <Typography sx={{color: 'grey.300'}}>{description}</Typography>
+          </Box>
+          <Box component="ul" sx={{display: 'grid', gap: 2, gridTemplateColumns: {xs: '1fr', sm: 'repeat(2, 1fr)'}, listStyle: 'none', m: 0, p: 0}}>
             {aboutItems.map(({label, text, Icon}, idx) => (
-              <li className="col-span-1 flex  items-start gap-x-2" key={idx}>
-                {Icon && <Icon className="h-5 w-5 text-white" />}
-                <span className="text-sm font-bold text-white">{label}:</span>
-                <span className=" text-sm text-gray-300">{text}</span>
-              </li>
+              <Box component="li" key={idx} sx={{display: 'flex', alignItems: 'flex-start', gap: 1}}>
+                {Icon && <Icon fontSize="small" />}
+                <Typography sx={{fontWeight: 'bold'}} variant="body2">
+                  {label}:
+                </Typography>
+                <Typography sx={{color: 'grey.300'}} variant="body2">
+                  {text}
+                </Typography>
+              </Box>
             ))}
-          </ul>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </Section>
   );
 });

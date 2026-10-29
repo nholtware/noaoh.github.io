@@ -1,8 +1,9 @@
-import 'tailwindcss/tailwind.css';
-import './globalStyles.scss';
-
+import CssBaseline from '@mui/material/CssBaseline';
+import {ThemeProvider} from '@mui/material/styles';
 import type {LinksFunction} from 'react-router';
 import {Links, Meta, Outlet, Scripts, ScrollRestoration} from 'react-router';
+
+import theme from './theme';
 
 export const links: LinksFunction = () => [
   {rel: 'icon', href: '/favicon.ico', sizes: 'any'},
@@ -18,9 +19,13 @@ export default function Root() {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Meta />
         <Links />
+        <meta content="emotion-insertion-point" name="emotion-insertion-point" />
       </head>
-      <body className="bg-black">
-        <Outlet />
+      <body>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Outlet />
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

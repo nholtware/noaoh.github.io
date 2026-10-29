@@ -33,3 +33,6 @@ npm-error.log*
 # vercel
 .vercel
 .env*
+
+# react router
+.react-router

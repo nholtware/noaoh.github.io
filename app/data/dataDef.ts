@@ -1,6 +1,9 @@
-import {FC, ForwardRefExoticComponent, SVGProps} from 'react';
+import {SvgIconProps} from '@mui/material/SvgIcon';
+import {ComponentType, FC} from 'react';
 
 import {IconProps} from '../components/Icon/Icon';
+
+export type IconComponent = ComponentType<SvgIconProps>;
 
 export interface HomepageMeta {
   title: string;
@@ -30,7 +33,7 @@ interface HeroActionItem {
   href: string;
   text: string;
   primary?: boolean;
-  Icon?: ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'>>;
+  Icon?: IconComponent;
 }
 
 /**
@@ -45,7 +48,7 @@ export interface About {
 export interface AboutItem {
   label: string;
   text: string;
-  Icon?: ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'>>;
+  Icon?: IconComponent;
 }
 
 /**
@@ -54,7 +57,7 @@ export interface AboutItem {
 export interface Stat {
   title: string;
   value: number;
-  Icon?: ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'>>;
+  Icon?: IconComponent;
 }
 
 /**
@@ -118,7 +121,7 @@ export interface ContactItem {
 }
 
 export interface ContactValue {
-  Icon: FC<IconProps> | ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'>>;
+  Icon: IconComponent;
   srLabel: string;
 }
 

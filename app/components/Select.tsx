@@ -1,7 +1,11 @@
-import classNames from 'classnames';
-import {ChangeEvent, FC, PropsWithChildren} from 'react';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import MuiSelect, {SelectChangeEvent} from '@mui/material/Select';
+import {SxProps, Theme} from '@mui/material/styles';
+import {FC, PropsWithChildren} from 'react';
 
-type SelectChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => void;
+type SelectChangeHandler = (event: SelectChangeEvent) => void;
 
 interface SelectText {
   label: string;
@@ -12,26 +16,23 @@ interface SelectProps {
   options: SelectText[];
   handleChange: SelectChangeHandler;
   value: string;
-  className?: string;
+  label?: string;
+  sx?: SxProps<Theme>;
 }
 
 const Select: FC<PropsWithChildren<SelectProps>> = (props: SelectProps) => {
+  const labelId = `select-${props.label ?? 'option'}`.replace(/\s+/g, '-').toLowerCase();
   return (
-    <select
-      className={classNames(
-        'block appearance-none rounded border border-gray-400 bg-white py-1 px-10 leading-tight focus:outline-none',
-        props.className,
-      )}
-      onChange={props.handleChange}
-      value={props.value}>
-      {props.options.map((option, i) => {
-        return (
-          <option key={i} value={option.value}>
+    <FormControl size="small" sx={{minWidth: 200, ...props.sx}}>
+      {props.label && <InputLabel id={labelId}>{props.label}</InputLabel>}
+      <MuiSelect label={props.label} labelId={labelId} onChange={props.handleChange} value={props.value}>
+        {props.options.map(option => (
+          <MenuItem key={option.value} value={option.value}>
             {option.label}
-          </option>
-        );
-      })}
-    </select>
+          </MenuItem>
+        ))}
+      </MuiSelect>
+    </FormControl>
   );
 };
 

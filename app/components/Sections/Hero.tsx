@@ -1,5 +1,9 @@
-import {ChevronDownIcon} from '@heroicons/react/24/outline';
-import classNames from 'classnames';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Fab from '@mui/material/Fab';
+import Typography from '@mui/material/Typography';
 import {FC, memo} from 'react';
 
 import {heroData, HomepageSections} from '../../data/data';
@@ -11,44 +15,60 @@ const Hero: FC = memo(() => {
 
   return (
     <Section noPadding section={HomepageSections.Hero}>
-      <div className="relative flex h-screen w-screen items-center justify-center">
-        <img
+      <Box sx={{position: 'relative', display: 'flex', height: '100vh', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+        <Box
           alt={`${name}-image`}
-          className="absolute inset-0 z-0 h-full w-full object-cover"
+          component="img"
           src={imageSrc}
+          sx={{position: 'absolute', inset: 0, zIndex: 0, height: '100%', width: '100%', objectFit: 'cover'}}
         />
-        <div className="z-10  max-w-screen-lg px-4 lg:px-0">
-          <div className="flex flex-col items-center gap-y-6 rounded-xl bg-gray-800/40 p-6 text-center shadow-lg backdrop-blur-sm">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-7xl">{name}</h1>
+        <Container maxWidth="lg" sx={{position: 'relative', zIndex: 1}}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 3,
+              borderRadius: 3,
+              bgcolor: 'rgba(31, 41, 55, 0.4)',
+              p: 3,
+              textAlign: 'center',
+              boxShadow: 6,
+              backdropFilter: 'blur(4px)',
+            }}>
+            <Typography component="h1" sx={{fontWeight: 'bold', fontSize: {xs: '2.25rem', sm: '3rem', lg: '4.5rem'}, lineHeight: 1.1}}>
+              {name}
+            </Typography>
             {description}
-            <div className="flex gap-x-4 text-neutral-100">
+            <Box sx={{display: 'flex', gap: 2, color: 'grey.100'}}>
               <Socials />
-            </div>
-            <div className="flex w-full justify-center gap-x-4">
+            </Box>
+            <Box sx={{display: 'flex', width: '100%', justifyContent: 'center', gap: 2}}>
               {actions.map(({href, text, primary, Icon}) => (
-                <a
-                  className={classNames(
-                    'flex gap-x-2 rounded-full border-2 bg-none py-2 px-4 text-sm font-medium text-white ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base',
-                    primary ? 'border-bright-red ring-bright-red' : 'border-white ring-white',
-                  )}
+                <Button
+                  color={primary ? 'primary' : 'inherit'}
+                  endIcon={Icon && <Icon />}
                   href={href}
                   key={text}
-                  target="_blank">
+                  sx={{borderRadius: 999, borderWidth: 2, '&:hover': {borderWidth: 2}, color: 'common.white'}}
+                  target="_blank"
+                  variant="outlined">
                   {text}
-                  {Icon && <Icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />}
-                </a>
+                </Button>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-x-0 bottom-6 flex justify-center">
-          <a
-            className="rounded-full bg-white p-1 ring-white ring-offset-2 ring-offset-gray-700/80 focus:outline-none focus:ring-2 sm:p-2"
-            href={`/#${HomepageSections.About.urlName}`}>
-            <ChevronDownIcon className="h-5 w-5 bg-transparent sm:h-6 sm:w-6" />
-          </a>
-        </div>
-      </div>
+            </Box>
+          </Box>
+        </Container>
+        <Box sx={{position: 'absolute', insetInline: 0, bottom: 24, display: 'flex', justifyContent: 'center'}}>
+          <Fab
+            aria-label="Scroll to about"
+            href={`/#${HomepageSections.About.urlName}`}
+            size="small"
+            sx={{bgcolor: 'common.white', color: 'grey.900', '&:hover': {bgcolor: 'grey.200'}}}>
+            <KeyboardArrowDownIcon />
+          </Fab>
+        </Box>
+      </Box>
     </Section>
   );
 });

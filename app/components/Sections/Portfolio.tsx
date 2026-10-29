@@ -1,5 +1,6 @@
-import {ArrowTopRightOnSquareIcon} from '@heroicons/react/24/outline';
-import classNames from 'classnames';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import {FC, memo, MouseEvent, useCallback, useEffect, useRef, useState} from 'react';
 
 import {isMobile} from '../../config';
@@ -10,26 +11,25 @@ import Section from '../Layout/Section';
 
 const Portfolio: FC = memo(() => {
   return (
-    <Section className="bg-neutral-800" section={HomepageSections.Portfolio}>
-      <div className="flex flex-col gap-y-8">
-        <h2 className="self-center text-xl font-bold text-white">Check out some of my work</h2>
-        <div className=" w-full columns-2 md:columns-3 lg:columns-4">
+    <Section section={HomepageSections.Portfolio} sx={{bgcolor: 'grey.900'}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', gap: 4}}>
+        <Typography component="h2" sx={{alignSelf: 'center', fontWeight: 'bold'}} variant="h5">
+          Check out some of my work
+        </Typography>
+        <Box sx={{width: '100%', columnCount: {xs: 2, md: 3, lg: 4}}}>
           {portfolioItems.map((item, index) => {
             const {title, image} = item;
             return (
-              <div className="pb-6" key={`${title}-${index}`}>
-                <div
-                  className={classNames(
-                    'relative h-max w-full overflow-hidden rounded-lg shadow-lg shadow-black/30 lg:shadow-xl',
-                  )}>
-                  <img alt={title} className="w-full" src={image} />
+              <Box key={`${title}-${index}`} sx={{pb: 3}}>
+                <Box sx={{position: 'relative', height: 'max-content', width: '100%', overflow: 'hidden', borderRadius: 2, boxShadow: 6}}>
+                  <Box alt={title} component="img" src={image} sx={{width: '100%', display: 'block'}} />
                   <ItemOverlay item={item} />
-                </div>
-              </div>
+                </Box>
+              </Box>
             );
           })}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Section>
   );
 });
@@ -61,23 +61,33 @@ const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, descrip
   );
 
   return (
-    <a
-      className={classNames(
-        'absolute inset-0 h-full w-full  bg-gray-900 transition-all duration-300',
-        {'opacity-0 hover:opacity-80': !mobile},
-        showOverlay ? 'opacity-80' : 'opacity-0',
-      )}
+    <Box
+      component="a"
       href={url}
       onClick={handleItemClick}
       ref={linkRef}
+      sx={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        bgcolor: 'grey.900',
+        color: 'common.white',
+        textDecoration: 'none',
+        transition: 'opacity 300ms',
+        opacity: showOverlay ? 0.8 : 0,
+        ...(!mobile && {'&:hover': {opacity: 0.8}}),
+      }}
       target="_blank">
-      <div className="relative h-full w-full p-4">
-        <div className="flex h-full w-full flex-col gap-y-2 overflow-y-auto">
-          <h2 className="text-center font-bold text-white opacity-100">{title}</h2>
-          <p className="text-xs text-white opacity-100 sm:text-sm">{description}</p>
-        </div>
-        <ArrowTopRightOnSquareIcon className="absolute bottom-1 right-1 h-4 w-4 shrink-0 text-white sm:bottom-2 sm:right-2" />
-      </div>
-    </a>
+      <Box sx={{position: 'relative', height: '100%', width: '100%', p: 2}}>
+        <Box sx={{display: 'flex', height: '100%', width: '100%', flexDirection: 'column', gap: 1, overflowY: 'auto'}}>
+          <Typography component="h2" sx={{textAlign: 'center', fontWeight: 'bold'}} variant="subtitle1">
+            {title}
+          </Typography>
+          <Typography sx={{fontSize: {xs: '0.75rem', sm: '0.875rem'}}}>{description}</Typography>
+        </Box>
+        <OpenInNewIcon sx={{position: 'absolute', bottom: {xs: 4, sm: 8}, right: {xs: 4, sm: 8}, fontSize: 16}} />
+      </Box>
+    </Box>
   );
 });

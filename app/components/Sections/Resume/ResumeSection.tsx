@@ -1,16 +1,28 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import {FC, memo, PropsWithChildren} from 'react';
 
 const ResumeSection: FC<PropsWithChildren<{title: string}>> = memo(({title, children}) => {
   return (
-    <div className="grid grid-cols-1 gap-y-4 py-8 first:pt-0 last:pb-0  md:grid-cols-4">
-      <div className="col-span-1 flex justify-center md:justify-start">
-        <div className="relative h-max">
-          <h2 className="text-xl font-bold uppercase text-neutral-800">{title}</h2>
-          <span className="absolute inset-x-0 -bottom-1 border-b-2 border-red-400" />
-        </div>
-      </div>
-      <div className="col-span-1 flex flex-col md:col-span-3">{children}</div>
-    </div>
+    <Box
+      sx={{
+        display: 'grid',
+        gap: 2,
+        py: 4,
+        gridTemplateColumns: {xs: '1fr', md: 'repeat(4, 1fr)'},
+        '&:first-of-type': {pt: 0},
+        '&:last-of-type': {pb: 0},
+      }}>
+      <Box sx={{display: 'flex', justifyContent: {xs: 'center', md: 'flex-start'}}}>
+        <Box sx={{position: 'relative', height: 'max-content'}}>
+          <Typography component="h2" sx={{fontWeight: 'bold', textTransform: 'uppercase', color: 'grey.800'}} variant="h6">
+            {title}
+          </Typography>
+          <Box component="span" sx={{position: 'absolute', insetInline: 0, bottom: -4, borderBottom: 2, borderColor: 'primary.light'}} />
+        </Box>
+      </Box>
+      <Box sx={{display: 'flex', flexDirection: 'column', gridColumn: {md: 'span 3'}}}>{children}</Box>
+    </Box>
   );
 });
 

@@ -1,14 +1,26 @@
+import Box from '@mui/material/Box';
+import {SxProps, Theme} from '@mui/material/styles';
 import {FC, PropsWithChildren} from 'react';
 
 interface GridViewProps {
-  className?: string;
+  sx?: SxProps<Theme>;
 }
 
-const GridView: FC<PropsWithChildren<GridViewProps>> = ({children, className = ''}) => {
+const GridView: FC<PropsWithChildren<GridViewProps>> = ({children, sx}) => {
   return (
-    <div className={`mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 ${className}`}>
+    <Box
+      sx={[
+        {
+          mt: 10,
+          px: 2,
+          display: 'grid',
+          gap: 3,
+          gridTemplateColumns: {xs: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)'},
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}>
       {children}
-    </div>
+    </Box>
   );
 };
 

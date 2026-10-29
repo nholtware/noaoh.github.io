@@ -1,4 +1,6 @@
-import classNames from 'classnames';
+import Box from '@mui/material/Box';
+import {SelectChangeEvent} from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import {compareAsc, compareDesc} from 'date-fns';
 import Fuse from 'fuse.js';
 import {ChangeEvent, FC, PropsWithChildren, useEffect, useMemo, useState} from 'react';
@@ -84,16 +86,17 @@ interface VinylCollectionProps {
 const VinylItemElement: FC<PropsWithChildren<VinylItem>> = (props: VinylItem) => {
   const formattedDate = new Date(props.dateAdded).toLocaleDateString();
   return (
-    <div className={classNames('relative p-4', 'align-center flex flex-wrap')}>
+    <Box sx={{position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', p: 2}}>
       <>
-        <img
+        <Box
           alt="Image didn't load"
-          className={classNames({'blur-sm': props.needsBlur}, 'mr-4 h-[150px] w-[150px]')}
+          component="img"
           height={150}
           src={props.thumbnail}
+          sx={{mr: 2, ...(props.needsBlur && {filter: 'blur(4px)'})}}
           width={150}
         />{' '}
-        <Textfit className="ml-2 text-white" min={20} mode="multi">
+        <Textfit min={20} mode="multi" style={{marginLeft: 8}}>
           <strong>{props.artists.length === 1 ? 'Artist:' : 'Artists:'}</strong> {and(props.artists, 'and')}
           <br />
           <strong>Album:</strong> {props.album}
@@ -101,14 +104,14 @@ const VinylItemElement: FC<PropsWithChildren<VinylItem>> = (props: VinylItem) =>
           <strong>Date Added:</strong> {formattedDate}
         </Textfit>
       </>
-    </div>
+    </Box>
   );
 };
 
 const VinylCollection: FC<PropsWithChildren<VinylCollectionProps>> = props => {
   if (props.vinylCollection.length === 0 && !props.noSearchResults) {
     return (
-      <Textfit className="text-white" max={30} mode="single">
+      <Textfit max={30} mode="single">
         My vinyl collection is loading...
       </Textfit>
     );
@@ -132,7 +135,7 @@ const VinylCollection: FC<PropsWithChildren<VinylCollectionProps>> = props => {
     );
   } else {
     return (
-      <Textfit className="text-white" min={20} mode="multi">
+      <Textfit min={20} mode="multi">
         There are no results for the search '{props.searchTerm}'. Try backspacing or searching for another search term.
       </Textfit>
     );
@@ -194,11 +197,11 @@ const VinylCollectionPage: FC = () => {
     }
   };
 
-  const handleSortOrderChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleSortOrderChange = (event: SelectChangeEvent) => {
     setSortOrder(event.target.value);
   };
 
-  const handleSortTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleSortTypeChange = (event: SelectChangeEvent) => {
     setSortType(event.target.value);
   };
 
@@ -225,21 +228,22 @@ const VinylCollectionPage: FC = () => {
   return (
     <>
       <Header sections={navLinks} />
-      <Select
-        className="mt-20"
-        handleChange={sortOrderProps.handleChange}
-        options={sortOrderProps.options}
-        value={sortOrder}
-      />
-      <br />
-      <Select handleChange={sortTypeProps.handleChange} options={sortTypeProps.options} value={sortType} />
-      <br />
-      <input
-        className="rounded-md"
-        onChange={handleSearchTermChange}
-        placeholder="Search my vinyl collection!"
-        type="text"
-      />
+      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, mt: 10, px: 2}}>
+        <Select
+          handleChange={sortOrderProps.handleChange}
+          label="Order"
+          options={sortOrderProps.options}
+          value={sortOrder}
+        />
+        <Select handleChange={sortTypeProps.handleChange} label="Sort by" options={sortTypeProps.options} value={sortType} />
+        <TextField
+          onChange={handleSearchTermChange}
+          placeholder="Search my vinyl collection!"
+          size="small"
+          sx={{minWidth: 300}}
+          type="text"
+        />
+      </Box>
       <VinylCollection
         noSearchResults={noSearchResults}
         searchTerm={searchTerm}

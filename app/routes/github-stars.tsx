@@ -1,3 +1,9 @@
+import StarIcon from '@mui/icons-material/Star';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import {FC, useEffect, useState} from 'react';
 import type {MetaFunction} from 'react-router';
 
@@ -14,24 +20,26 @@ const RepoCard = ({repo}: {repo: any}) => {
   const {htmlUrl, description, name, fullName, stargazersCount} = repo;
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg p-6 bg-black">
-      <div className="font-bold text-xl mb-2 text-white">{name}</div>
-      <p className="text-gray-300 text-base mb-4">
-        {description}
-      </p>
-      <p className="text-sm text-gray-400 mb-4">Full Name: {fullName}</p>
-      <div className="flex items-center justify-between">
-        <a className="text-blue-400 hover:text-blue-600" href={htmlUrl} rel="noopener noreferrer" target="_blank">
-          View Repository
-        </a>
-        <div className="flex items-center">
-          <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.396 2.465a1 1 0 00-.364 1.118l1.287 3.974c.3.921-.755 1.688-1.54 1.118l-3.397-2.466a1 1 0 00-1.175 0l-3.397 2.466c-.784.57-1.838-.197-1.539-1.118l1.287-3.974a1 1 0 00-.364-1.118L2.043 9.402c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.975z" />
-          </svg>
-          <span className="ml-2 text-gray-300">{stargazersCount}</span>
-        </div>
-      </div>
-    </div>
+    <Card sx={{maxWidth: 'sm', p: 1.5, bgcolor: 'common.black', boxShadow: 6}}>
+      <CardContent>
+        <Typography gutterBottom sx={{fontWeight: 'bold'}} variant="h6">
+          {name}
+        </Typography>
+        <Typography sx={{color: 'grey.300', mb: 2}}>{description}</Typography>
+        <Typography sx={{color: 'grey.400', mb: 2}} variant="body2">
+          Full Name: {fullName}
+        </Typography>
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Link href={htmlUrl} rel="noopener noreferrer" target="_blank">
+            View Repository
+          </Link>
+          <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
+            <StarIcon sx={{color: 'warning.main'}} />
+            <Typography sx={{color: 'grey.300'}}>{stargazersCount}</Typography>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -63,15 +71,15 @@ const GithubStarsListPage: FC = () => {
   }, [])
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Typography>Loading...</Typography>;
   } else if (hasError) {
-    return <p>An error occurred while retrieving my github stars</p>;
+    return <Typography>An error occurred while retrieving my github stars</Typography>;
   }
 
   return (
     <>
       <Header sections={navLinks} />
-      <br />
+      <Box sx={{height: 24}} />
       <GridView>
       {githubStarsList.map((item) => {
         const {nodeId} = item;

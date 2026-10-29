@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import {FC, PropsWithChildren, useEffect, useState} from 'react';
 import type {MetaFunction} from 'react-router';
 import {Textfit} from 'react-textfit';
@@ -27,22 +29,22 @@ interface TrackProps {
 
 const Track: FC<PropsWithChildren<TrackProps>> = (props: TrackProps) => {
   return (
-    <div className="align-center relative flex flex-wrap p-4">
-      <img alt="Image didn't load" className="mr-4 h-[174px] w-[174px]" height={174} src={props.thumbnail} width={174} />
-      <Textfit className="ml-2 text-white" min={20} mode="multi">
+    <Box sx={{position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', p: 2}}>
+      <Box alt="Image didn't load" component="img" height={174} src={props.thumbnail} sx={{mr: 2}} width={174} />
+      <Textfit min={20} mode="multi" style={{marginLeft: 8}}>
         <strong>Artist</strong>: {props.artist}
         <br />
         <strong>Album</strong>: {props.album}
         <br />
         <strong>Song</strong>: {props.song}
       </Textfit>
-    </div>
+    </Box>
   );
 };
 
 const NotCurrentlyListening: FC = () => {
   return (
-    <Textfit className="text-white" min={20} mode="single">
+    <Textfit min={20} mode="single">
       I am not currently listening to anything.
     </Textfit>
   );
@@ -82,8 +84,10 @@ const CurrentlyListening: FC = () => {
   return (
     <>
       <OtherHeader sections={navLinks} />
-      <div className="height: 50vh flex h-screen flex-col items-center justify-center">
-        <h1 className="height: 100vh text-2xl font-bold text-white">What I'm Currently Listening to</h1>
+      <Box sx={{display: 'flex', height: '100vh', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <Typography component="h1" sx={{fontWeight: 'bold'}} variant="h4">
+          What I'm Currently Listening to
+        </Typography>
         {currListening.isPlaying ? (
           <Track
             album={currListening.album!}
@@ -94,7 +98,7 @@ const CurrentlyListening: FC = () => {
         ) : (
           <NotCurrentlyListening />
         )}
-      </div>
+      </Box>
     </>
   );
 };

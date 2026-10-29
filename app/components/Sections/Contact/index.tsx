@@ -1,5 +1,9 @@
-import {DevicePhoneMobileIcon, EnvelopeIcon, MapPinIcon} from '@heroicons/react/24/outline';
-import classNames from 'classnames';
+import DevicePhoneMobileIcon from '@mui/icons-material/PhoneIphone';
+import EnvelopeIcon from '@mui/icons-material/EmailOutlined';
+import MapPinIcon from '@mui/icons-material/LocationOnOutlined';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import {FC, memo} from 'react';
 
 import {contact, HomepageSections} from '../../../data/data';
@@ -16,43 +20,55 @@ const ContactValueMap: Record<ContactType, ContactValue> = {
   [ContactType.LinkedIn]: {Icon: LinkedInIcon, srLabel: 'LinkedIn'},
 };
 
+const visuallyHidden = {
+  border: 0,
+  clip: 'rect(0 0 0 0)',
+  height: '1px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+} as const;
+
 const Contact: FC = memo(() => {
   const {headerText, description, items} = contact;
   return (
-    <Section className="bg-neutral-800" section={HomepageSections.Contact}>
-      <div className="flex flex-col gap-y-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center">
-          <EnvelopeIcon className="hidden h-16 w-16 text-white md:block" />
-          <h2 className="text-2xl font-bold text-white">{headerText}</h2>
-        </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="order-1 col-span-1 flex flex-col gap-y-4 md:order-2">
-            <p className="prose leading-6 text-neutral-300">{description}</p>
-            <dl className="flex flex-col space-y-4 text-base text-neutral-500 sm:space-y-2">
-              {items.map(({type, text, href}) => {
-                const {Icon, srLabel} = ContactValueMap[type];
-                return (
-                  <div key={srLabel}>
-                    <dt className="sr-only">{srLabel}</dt>
-                    <dd className="flex items-center">
-                      <a
-                        className={classNames(
-                          '-m-2 flex rounded-md p-2 text-neutral-300 hover:text-bright-red focus:outline-none focus:ring-2 focus:ring-bright-red',
-                          {'hover:text-bright-red': href},
-                        )}
-                        href={href}
-                        target="_blank">
-                        <Icon aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-neutral-100 sm:h-5 sm:w-5" />
-                        <span className="ml-3 text-sm sm:text-base">{text}</span>
-                      </a>
-                    </dd>
-                  </div>
-                );
-              })}
-            </dl>
-          </div>
-        </div>
-      </div>
+    <Section section={HomepageSections.Contact} sx={{bgcolor: 'grey.900'}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', gap: 3}}>
+        <Box sx={{display: 'flex', flexDirection: {xs: 'column', md: 'row'}, alignItems: {md: 'center'}, gap: 3}}>
+          <EnvelopeIcon sx={{display: {xs: 'none', md: 'block'}, fontSize: 64}} />
+          <Typography component="h2" sx={{fontWeight: 'bold'}} variant="h4">
+            {headerText}
+          </Typography>
+        </Box>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>
+          <Typography sx={{color: 'grey.300'}}>{description}</Typography>
+          <Box component="dl" sx={{display: 'flex', flexDirection: 'column', gap: {xs: 2, sm: 1}, m: 0}}>
+            {items.map(({type, text, href}) => {
+              const {Icon, srLabel} = ContactValueMap[type];
+              return (
+                <Box key={srLabel}>
+                  <Box component="dt" sx={visuallyHidden}>
+                    {srLabel}
+                  </Box>
+                  <Box component="dd" sx={{m: 0}}>
+                    <Link
+                      color="grey.300"
+                      href={href}
+                      sx={{display: 'inline-flex', alignItems: 'center', gap: 1.5, textDecoration: 'none', '&:hover': {color: 'primary.main'}}}
+                      target="_blank">
+                      <Icon aria-hidden="true" fontSize="small" sx={{color: 'grey.100'}} />
+                      <span>{text}</span>
+                    </Link>
+                  </Box>
+                </Box>
+              );
+            })}
+          </Box>
+        </Box>
+      </Box>
     </Section>
   );
 });

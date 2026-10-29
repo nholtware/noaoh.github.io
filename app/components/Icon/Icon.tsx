@@ -1,22 +1,12 @@
+import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 import {FC, memo} from 'react';
 
-export interface IconProps extends React.HTMLAttributes<SVGSVGElement> {
-  svgRef?: React.Ref<SVGSVGElement>;
-  transform?: string;
-}
+export type IconProps = SvgIconProps;
 
-const Icon: FC<IconProps> = memo(({children, className, svgRef, transform, ...props}) => (
-  <svg
-    className={className}
-    fill="currentColor"
-    ref={svgRef}
-    transform={transform}
-    viewBox="0 0 128 128"
-    width="128"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}>
+const Icon: FC<IconProps> = memo(({children, ...props}) => (
+  <SvgIcon viewBox="0 0 128 128" {...props}>
     {children}
-  </svg>
+  </SvgIcon>
 ));
 
 export default Icon;

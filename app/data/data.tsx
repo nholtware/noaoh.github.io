@@ -1,25 +1,13 @@
-import {
-  AcademicCapIcon,
-  ArrowDownTrayIcon,
-  BuildingOffice2Icon,
-  CalendarIcon,
-  FlagIcon,
-  MapIcon, SparklesIcon,
-} from '@heroicons/react/24/outline';
+import BusinessIcon from '@mui/icons-material/Business';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import DownloadIcon from '@mui/icons-material/Download';
+import FlagIcon from '@mui/icons-material/Flag';
+import MapIcon from '@mui/icons-material/Map';
+import SchoolIcon from '@mui/icons-material/School';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import Typography from '@mui/material/Typography';
 
-import heroImage from '../../public/header-background.webp';
-import porfolioImage1 from '../../public/portfolio/portfolio-1.jpg';
-import porfolioImage2 from '../../public/portfolio/portfolio-2.jpg';
-import porfolioImage3 from '../../public/portfolio/portfolio-3.jpg';
-import porfolioImage4 from '../../public/portfolio/portfolio-4.jpg';
-import porfolioImage5 from '../../public/portfolio/portfolio-5.jpg';
-import porfolioImage6 from '../../public/portfolio/portfolio-6.jpg';
-import porfolioImage7 from '../../public/portfolio/portfolio-7.jpg';
-import porfolioImage8 from '../../public/portfolio/portfolio-8.jpg';
-import porfolioImage9 from '../../public/portfolio/portfolio-9.jpg';
-import porfolioImage10 from '../../public/portfolio/portfolio-10.jpg';
-import porfolioImage11 from '../../public/portfolio/portfolio-11.jpg';
-import profilepic from '../../public/profilepic.webp';
+
 import GithubIcon from '../components/Icon/GithubIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
 import StackOverflowIcon from '../components/Icon/StackOverflowIcon';
@@ -77,18 +65,18 @@ export const navLinks: SectionType[] = [
  * Hero section
  */
 export const heroData: Hero = {
-  imageSrc: heroImage,
+  imageSrc: '/header-background.webp',
   name: `Hello there, I'm Noah Holt!`,
   description: (
     <>
-      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a Central Arkansas based <strong className="text-stone-100">Backend Software Engineer</strong>, currently
-        working at <strong className="text-stone-100">DexCare</strong> helping to build the future of Healthcare by
+      <Typography sx={{color: 'grey.300', fontSize: {xs: '0.875rem', sm: '1rem', lg: '1.125rem'}}}>
+        I'm a Central Arkansas based <strong>Backend Software Engineer</strong>, currently
+        working at <strong>DexCare</strong> helping to build the future of Healthcare by
         making it easier to get the right appointment, with the right professional, at the right time!
-      </p>
-      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
+      </Typography>
+      <Typography sx={{color: 'grey.300', fontSize: {xs: '0.875rem', sm: '1rem', lg: '1.125rem'}}}>
         In my free time, you can catch me running, playing video games, hiking, reading, or coding up a new project!
-      </p>
+      </Typography>
     </>
   ),
   actions: [
@@ -96,7 +84,7 @@ export const heroData: Hero = {
       href: '/noah-holt-resume.pdf',
       text: 'Resume',
       primary: true,
-      Icon: ArrowDownTrayIcon,
+      Icon: DownloadIcon,
     },
     {
       href: `#${HomepageSections.Contact.urlName}`,
@@ -110,15 +98,15 @@ export const heroData: Hero = {
  * About section
  */
 export const aboutData: About = {
-  profileImageSrc: profilepic,
+  profileImageSrc: '/profilepic.webp',
   description: `More about me!`,
   aboutItems: [
     {label: 'Location', text: 'North Little Rock, AR', Icon: MapIcon},
-    {label: 'Age', text: '28', Icon: CalendarIcon},
+    {label: 'Age', text: '28', Icon: CalendarMonthIcon},
     {label: 'Nationality', text: 'American', Icon: FlagIcon},
-    {label: 'Interests', text: 'Video Games, Music, Linux, Programming', Icon: SparklesIcon},
-    {label: 'Studied At', text: 'University of Arkansas', Icon: AcademicCapIcon},
-    {label: 'Employment', text: 'DexCare', Icon: BuildingOffice2Icon},
+    {label: 'Interests', text: 'Video Games, Music, Linux, Programming', Icon: AutoAwesomeIcon},
+    {label: 'Studied At', text: 'University of Arkansas', Icon: SchoolIcon},
+    {label: 'Employment', text: 'DexCare', Icon: BusinessIcon},
   ],
 };
 
@@ -198,67 +186,67 @@ export const portfolioItems: PortfolioItem[] = [
     title: 'Project title 1',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage1,
+    image: '/portfolio/portfolio-1.jpg',
   },
   {
     title: 'Project title 2',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage2,
+    image: '/portfolio/portfolio-2.jpg',
   },
   {
     title: 'Project title 3',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage3,
+    image: '/portfolio/portfolio-3.jpg',
   },
   {
     title: 'Project title 4',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage4,
+    image: '/portfolio/portfolio-4.jpg',
   },
   {
     title: 'Project title 5',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage5,
+    image: '/portfolio/portfolio-5.jpg',
   },
   {
     title: 'Project title 6',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage6,
+    image: '/portfolio/portfolio-6.jpg',
   },
   {
     title: 'Project title 7',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage7,
+    image: '/portfolio/portfolio-7.jpg',
   },
   {
     title: 'Project title 8',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage8,
+    image: '/portfolio/portfolio-8.jpg',
   },
   {
     title: 'Project title 9',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage9,
+    image: '/portfolio/portfolio-9.jpg',
   },
   {
     title: 'Project title 10',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage10,
+    image: '/portfolio/portfolio-10.jpg',
   },
   {
     title: 'Project title 11',
     description: 'Give a short description of your project here.',
     url: 'https://timbaker.me',
-    image: porfolioImage11,
+    image: '/portfolio/portfolio-11.jpg',
   },
 ];
 
@@ -272,11 +260,11 @@ export const education: TimelineItemProps[] = [
     title: "Bachelor's of Science in Computer Science",
     gpa: '3.7',
     content: (
-      <p>
+      <Typography>
         I developed programs in C++, C, Python, and Node.JS, while not busy with that I was active in my local ACM
         (Association for Computing Machinery) Chapter where I assisted with putting on Hackathons, Mock Interviews and
         Information Sessions to assist my fellow students.
-      </p>
+      </Typography>
     ),
   },
 ];
@@ -287,10 +275,10 @@ export const experience: TimelineItemProps[] = [
     location: 'DexCare',
     title: 'Software Engineer',
     content: (
-      <p>
+      <Typography>
         Working on backends in NodeJS using the Koa framework to provide slots of time for patients to schedule
         appointments.
-      </p>
+      </Typography>
     ),
   },
   {
@@ -298,11 +286,11 @@ export const experience: TimelineItemProps[] = [
     location: 'Walmart',
     title: 'Software Engineer III',
     content: (
-      <p>
+      <Typography>
         For the first half of my time at Walmart, I worked on software that helped stop customer account activity that
         cost the company half a million dollars per week. For the second half of my time Walmart, I worked on various C#
         backends and Python scripts to automate workflows for Forensics Investigators working with Walmart.
-      </p>
+      </Typography>
     ),
   },
   {
@@ -310,10 +298,10 @@ export const experience: TimelineItemProps[] = [
     location: 'Walmart',
     title: 'Software Development Engineer Intern',
     content: (
-      <p>
+      <Typography>
         Worked on integrating together a ticketing system and a case management system; also refactored authentication
         for web services.
-      </p>
+      </Typography>
     ),
   },
   {
@@ -321,10 +309,10 @@ export const experience: TimelineItemProps[] = [
     location: 'ABCFinancial',
     title: 'DevOps Intern',
     content: (
-      <p>
+      <Typography>
         Responsible for proof-of-concept system containerizing Java applications and deploying them via Jenkins. Also
         developed applications to extract and upload computer setup information.
-      </p>
+      </Typography>
     ),
   },
   {
@@ -332,17 +320,17 @@ export const experience: TimelineItemProps[] = [
     location: 'North Little Rock City Government',
     title: 'IT Department Intern',
     content: (
-      <p>
+      <Typography>
         I assisted in the management of data using PowerShell. I also archived old files and machinery, converting a
         storage room into a training room.
-      </p>
+      </Typography>
     ),
   },
   {
     date: 'June 2016 - August 2016',
     location: 'North Little Rock City Government',
     title: 'Planning Department Intern',
-    content: <p>I assisted in the management of data through PowerShell, and other archival tasks.</p>,
+    content: <Typography>I assisted in the management of data through PowerShell, and other archival tasks.</Typography>,
   },
 ];
 
